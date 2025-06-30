@@ -7,5 +7,9 @@ jobs:  # plural
     steps:
       - name: print greeting
         run: echo "hellow world"
+      - name: multi-line
+        run: |
+          echo "First output"
+          echo "Second output"
       - name: print bye
         run: echo "done - bye!"
