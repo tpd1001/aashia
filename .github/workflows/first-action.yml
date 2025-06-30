@@ -1,0 +1,11 @@
+name: first workflow
+# manually triggered only
+on: workflow_dispatch
+jobs:  # plural
+  first-job:
+    runs-on: ubuntu-latest  # search for github runners: https://docs.github.com/en/actions/how-tos/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners
+    steps:
+      - name: print greeting
+        run: echo "hellow world"
+      - name: print bye
+        run: echo "done - bye!"
