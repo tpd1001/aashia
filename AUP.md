@@ -4,7 +4,7 @@ Previous: `Dropbox/_shared/Aashia/Agreements/Family Mobile Phone Agreement.docx`
 
 ## Scope
 
-The term "device" constitutes any technical piece of equipment such as a Mobile Phone, Tablet, PC, Surface, iPad etc. but it not limited to the aforementioned items. This covers and or all devices or technology - past, present or future. Any and all of these are hereinafter referred to as by the all-encompassing term "__device__".
+The term "device" constitutes any technical piece of equipment such as a Mobile Phone, Tablet, PC, Surface, iPad etc. but it not limited to the aforementioned items. This covers any or all devices or technology - past, present or future. Any and all of these are hereinafter referred to as by the all-encompassing term "__device__".
 
 ## Agreement
 
