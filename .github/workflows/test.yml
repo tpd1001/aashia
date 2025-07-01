@@ -1,0 +1,20 @@
+namw: test react project
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        # https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@v3
+        #with:  # don't need to if you don't need to change settings
+      # NOT ACTUALLY NEEDED - ubuntu-latest comes with node preinstalled
+      - name: Setup Node JS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm ci  # better than `npm install` as uses versions from package-lock.json (safer)
+      - name: run tests
+        run: npm test
