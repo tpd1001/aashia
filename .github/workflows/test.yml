@@ -1,4 +1,4 @@
-namw: test react project
+name: test react project
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 on: push
 jobs:
