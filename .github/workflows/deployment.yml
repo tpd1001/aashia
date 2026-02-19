@@ -1,5 +1,6 @@
 name: deploy project
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+# break with: vim ${repo_root?}/src/components/MainContent.test.jsx  # not.toBe
 on: push
 jobs:
   test:  # test job
