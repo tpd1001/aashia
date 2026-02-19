@@ -1,8 +1,9 @@
 name: deploy project
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
-on:  # multiple event triggers. or [push, workflow_dispatch]
-  - push
-  - workflow_dispatch
+on: [push, workflow_dispatch]
+#on:  # multiple event triggers. or [push, workflow_dispatch]
+#  - push
+#  - workflow_dispatch
 jobs:
   test:  # test job
     runs-on: ubuntu-latest
