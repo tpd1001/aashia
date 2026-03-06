@@ -12,17 +12,18 @@ jobs:
       - name: Output
         # https://docs.github.com/en/actions/learn-github-actions/contexts
         # https://docs.github.com/en/actions/learn-github-actions/expressions
-        run: echo "${{ toJSON(github) }}"
+        run: echo foo  #"${{ toJSON(github) }}"
         # expression --^^^^^^ ^^^^^^-- context
 
       - id: set-matrix
         run: |
           echo "matrix={\"include\": [{\"os\": \"ubuntu-latest\", \"node\": \"20\"}]}" >> "$GITHUB_OUTPUT"
 
-#test:
-#  needs: info
-#  strategy:
-#    matrix: ${{ fromJson(needs.info.outputs.matrix) }}
-#  runs-on: ${{ matrix.os }}
-#  steps:
-#    - run: npm test
+test:
+  needs: info
+  strategy:
+    matrix: ${{ fromJson(needs.info.outputs.matrix) }}
+  runs-on: ubuntu-latest  #${{ matrix.os }}
+  steps:
+    - run: |
+        echo "${{ matrix.os }} AND ${{ matrix.node }}"
