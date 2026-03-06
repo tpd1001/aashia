@@ -26,19 +26,19 @@ jobs:
             --arg created_at "${created_at}" \
             --arg jira_id "${jira_id}" \
             '{
-              "include": [
+              \"include\": [
                 {
-                  "serviceAccount": "sa1",
-                  "project": "prj1"
+                  \"serviceAccount\": \"sa1\",
+                  \"project\": \"prj1\"
                 },
-                  "serviceAccount": "sa2",
-                  "project": "prj2"
+                  \"serviceAccount\": \"sa2\",
+                  \"project\": \"prj2\"
                 },
-                  "serviceAccount": "sa3",
-                  "project": "prj3"
+                  \"serviceAccount\": \"sa3\",
+                  \"project\": \"prj3\"
                 }
               ]
-            }|tojson'
+            }'
           );echo "$slack_data_json"
           echo "matrix=$slack_data_json"
 
