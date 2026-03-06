@@ -1,13 +1,28 @@
 name: Dynamic Matrix
+# yamllint disable-line rule:truthy
 on:
   push:
   workflow_dispatch:
 jobs:
-  info:
+  info:  # set $jn to this
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: Output GitHub context
+      - name: Output
         # https://docs.github.com/en/actions/learn-github-actions/contexts
         # https://docs.github.com/en/actions/learn-github-actions/expressions
         run: echo "${{ toJSON(github) }}"
         # expression --^^^^^^ ^^^^^^-- context
+
+      - id: set-matrix
+        run: |
+          echo "matrix={\"include\": [{\"os\": \"ubuntu-latest\", \"node\": \"20\"}]}" >> "$GITHUB_OUTPUT"
+
+#test:
+#  needs: info
+#  strategy:
+#    matrix: ${{ fromJson(needs.info.outputs.matrix) }}
+#  runs-on: ${{ matrix.os }}
+#  steps:
+#    - run: npm test

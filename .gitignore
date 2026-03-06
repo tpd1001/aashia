@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# symlinks
+.scripts
+.yamllint
+.github/workflows/.functions
