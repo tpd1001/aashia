@@ -16,8 +16,9 @@ jobs:
         # expression --^^^^^^ ^^^^^^-- context
 
       - id: set-matrix
-        run: |
           #echo "matrix={\"include\": [{\"os\": \"ubuntu-latest\", \"node\": \"20\"}]}" >> "$GITHUB_OUTPUT"
+        shell: bash
+        run: |
           slack_data_json=$(jq -c -n \
             --arg service_account "${service_account}" \
             --arg project "${project}" \
