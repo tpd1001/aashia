@@ -38,7 +38,7 @@ jobs:
                   "project": "prj3"
                 }
               ]
-            }'
+            }|tojson'
           );echo "$slack_data_json"
           echo "matrix=$slack_data_json"
 
