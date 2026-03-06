@@ -19,7 +19,7 @@ jobs:
           #echo "matrix={\"include\": [{\"os\": \"ubuntu-latest\", \"node\": \"20\"}]}" >> "$GITHUB_OUTPUT"
         shell: bash
         run: |
-          slack_data_json=$(jq -c -n \
+          slack_data_json=$(jq -c \
             --arg service_account "${service_account}" \
             --arg project "${project}" \
             --arg rotation_deadline "${rotation_deadline}" \
