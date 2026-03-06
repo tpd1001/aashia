@@ -17,7 +17,29 @@ jobs:
 
       - id: set-matrix
         run: |
-          echo "matrix={\"include\": [{\"os\": \"ubuntu-latest\", \"node\": \"20\"}]}" >> "$GITHUB_OUTPUT"
+          #echo "matrix={\"include\": [{\"os\": \"ubuntu-latest\", \"node\": \"20\"}]}" >> "$GITHUB_OUTPUT"
+          slack_data_json=$(jq -c -n \
+            --arg service_account "${service_account}" \
+            --arg project "${project}" \
+            --arg rotation_deadline "${rotation_deadline}" \
+            --arg created_at "${created_at}" \
+            --arg jira_id "${jira_id}" \
+            '{
+              "include": [
+                {
+                  "serviceAccount": "sa1",
+                  "project": "prj1"
+                },
+                  "serviceAccount": "sa2",
+                  "project": "prj2"
+                },
+                  "serviceAccount": "sa3",
+                  "project": "prj3"
+                }
+              ]
+            }'
+          );echo "$slack_data_json"
+          echo "matrix=$slack_data_json"
 
   test:
     needs: info
@@ -26,4 +48,5 @@ jobs:
     runs-on: ubuntu-latest  #${{ matrix.os }}
     steps:
       - run: |
-          echo "${{ matrix.os }} AND ${{ matrix.node }}"
+          echo "ONE ${{ matrix.os }} AND ${{ matrix.node }}"
+          echo "TWO ${{ matrix.project }} AND ${{ matrix.serviceAccount }}"
