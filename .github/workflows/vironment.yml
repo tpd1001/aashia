@@ -50,7 +50,7 @@ jobs:
                     --arg project "${project}" \
                     --arg rotation_deadline "${rotationDeadline}" \
                     --arg created_at "${createdAt}" \
-                  '. += {"serviceaccount":$service_account,"project":$project}'
+                  '. += [{"serviceaccount":$service_account,"project":$project}]'
                   )
             done
           done
