@@ -30,10 +30,10 @@ jobs:
           # initialise the empty matrix array
           export matrix='{"include":[]}'
           # initialise the empty environment array
-          export ${{ matrix.ENVIRONMENT }}='{}'
+          export ${{ matrix.ENVIRONMENT }}='[]'
           # initialise the empty environment file
           export FILE=/tmp/${{ matrix.ENVIRONMENT }}
-          echo '{}' > $FILE
+          echo '[]' > $FILE
 
           export projects="prj1 prj2 prj3"
           export serviceAccounts="sa1 sa2 sa3"
