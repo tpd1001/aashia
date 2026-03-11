@@ -51,5 +51,5 @@ jobs:
     runs-on: ubuntu-latest  #${{ matrix.os }}
     steps:
       - run: |
-          echo "ONE ${{ matrix.os }} AND ${{ matrix.node }}"
-          echo "TWO ${{ matrix.project }} AND ${{ matrix.serviceAccount }}"
+          echo "Service Account: ${{ matrix.serviceAccount }}"
+          echo "Project: ${{ matrix.project }}"

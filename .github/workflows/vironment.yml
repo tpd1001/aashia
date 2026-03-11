@@ -1,0 +1,50 @@
+name: Dynamic Environment Vars
+# yamllint disable-line rule:truthy
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  env-vars:  # set $jn to this
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ENVIRONMENT: [test]
+        #ENVIRONMENT: [dev, test, prod]
+    steps:
+      - name: Check Service Account Expiry
+        #if: false  # This step will never run
+        id: check-service-account-expiry
+        run: |
+          export ENVIRONMENT=${{ matrix.ENVIRONMENT }}  # use the matrix strategy
+          # initialise GITHUB_OUTPUT for this step
+          DELIMITER=$(date +%s)
+          #echo "service-accounts-expiring<<$DELIMITER" >> "$GITHUB_OUTPUT"
+
+          case ${uname:=$(uname)} in
+            Linux)  unixtime() { date -d "${1?}" "$2"; } ;;
+            Darwin) unixtime() { gdate -d "${1?}" "$2"; } ;;
+            Qarwin) unixtime() { date -j -f "%Y-%d-%mT%H:%M:%SZ" "${1?}" "+%s"; } ;;
+            *) echo "Unsupported OS: $uname";exit 1;;
+          esac
+
+          # initialise the empty matrix array
+          export matrix='{"include":[]}'
+          # initialise the empty environment array
+          export ${{ matrix.ENVIRONMENT }}='{}'
+          # initialise the empty environment file
+          export FILE=/tmp/${{ matrix.ENVIRONMENT }}
+          echo '{}' > $FILE
+
+          export projects="prj1 prj2 prj3"
+          export serviceAccounts="sa1 sa2 sa3"
+
+          for project in ${projects}; do
+            for serviceAccount in ${serviceAccounts}; do
+                  echo 'ENVIRONMENT_FROM_MATRIX=${{ matrix.ENVIRONMENT }}'
+                  echo "ENVIRONMENT_FROM_SHELL=${{ matrix.ENVIRONMENT }}"
+                  echo "project=$project"
+                  echo "serviceAccount=$serviceAccount"
+                  # add this key details to the environment array
+            done
+          done
+
