@@ -45,6 +45,14 @@ jobs:
                   echo "project=$project"
                   echo "serviceAccount=$serviceAccount"
                   # add this key details to the environment array
+                  ${{ matrix.ENVIRONMENT }}=$(echo $${{ matrix.ENVIRONMENT }} | jq -c \
+                    --arg service_account "${serviceAccount}" \
+                    --arg project "${project}" \
+                    --arg rotation_deadline "${rotationDeadline}" \
+                    --arg created_at "${createdAt}" \
+                  '. += {"serviceaccount":$service_account,"project":$project}'
+                  )
             done
           done
+          echo $${{ matrix.ENVIRONMENT }}
 
